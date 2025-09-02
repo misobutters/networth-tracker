@@ -1,0 +1,86 @@
+Product Requirements Document: Net Worth Tracker
+1. Introduction
+1.1. Product Vision
+Create a user-friendly and highly customizable net worth tracker application that empowers users to monitor their financial health. The application will enable users to define their own asset and liability categories and visualize their financial progress over time with beautiful, interactive charts.
+
+1.2. Target Audience
+This application is designed for individuals who want to take control of their financial lives, from those just starting their financial journey to experienced investors. The primary target audience is users who prefer a hands-on approach to personal finance and want a visual representation of their net worth.
+
+2. Scope
+2.1. Core Features
+User-Defined Categories: Users can create, edit, and delete custom categories for both assets and liabilities (e.g., "Stocks," "Crypto," "Real Estate," "Credit Card Debt," "Mortgage").
+
+Manual Data Entry: Users can manually add, edit, and delete entries for each category, including the amount and date.
+
+Interactive Dashboards and Charts:
+
+A main dashboard displaying the current net worth.
+
+Historical trend charts showing net worth over time (line chart).
+
+Breakdown charts (pie or donut charts) showing the composition of assets and liabilities by category.
+
+Custom date range filters for all charts.
+
+Data Persistence: User data will be securely stored to allow for tracking over time.
+
+2.2. Out of Scope
+Automatic bank account synchronization (third-party APIs).
+
+Stock market data fetching and real-time updates.
+
+Tax and retirement planning advice.
+
+Collaboration or multi-user features.
+
+3. User Stories
+As a user, I want to...
+...create a new asset category so I can track my investments separately from my cash.
+
+...add a new entry for my savings account so my net worth is up to date.
+
+...see a line chart of my net worth over the past year so I can visualize my financial growth.
+
+...view a pie chart showing the percentage of my net worth in different asset categories so I can understand my portfolio allocation.
+
+...edit an incorrect entry so my data is accurate.
+
+...delete an old liability so it no longer appears on my tracker.
+
+4. Key Performance Indicators (KPIs)
+User Retention Rate: Measure the percentage of users who return to the app after the first 30 days.
+
+Average Sessions per User: Track how often users are engaging with the application.
+
+Number of Categories Created: Monitor user customization and engagement with the core functionality.
+
+Chart Views: Analyze which charts are most frequently viewed to guide future development.
+
+5. Future Roadmap
+Phase 1 (MVP):
+
+User registration and login.
+
+Manual data entry and editing.
+
+User-defined categories.
+
+Basic net worth trend chart.
+
+Asset and liability breakdown charts.
+
+Phase 2 (Post-launch):
+
+Introduce more chart types (e.g., bar charts for monthly changes).
+
+Add a "Goals" feature to track progress toward a specific financial target.
+
+Export data to a CSV or PDF file.
+
+Phase 3 (Long-term):
+
+Develop a mobile application.
+
+Integrate with third-party financial services for automated data syncing (e.g., Plaid).
+
+Add reporting features (e.g., annual summaries).

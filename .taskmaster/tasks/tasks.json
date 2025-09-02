@@ -1,0 +1,693 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Project Repository and Development Environment",
+        "description": "Initialize the project repository and configure the development environment with the chosen tech stack.",
+        "details": "Create a new repository (e.g., GitHub). Set up the project structure using the selected frontend (e.g., React) and backend (e.g., Node.js/Express) frameworks. Configure TypeScript, ESLint, Prettier, and install core dependencies. Set up initial README and contribution guidelines.",
+        "testStrategy": "Verify repository can be cloned, dependencies installed, and development server runs without errors.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "in-progress",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create and Configure Remote Repository",
+            "description": "Establish a new remote repository (e.g., on GitHub) with an appropriate name, description, and visibility settings. Initialize with a .gitignore and license file.",
+            "dependencies": [],
+            "details": "Set up the repository with a clear naming convention, add a .gitignore for the chosen tech stack, and select the appropriate license. Configure repository topics and permissions as needed.\n<info added on 2025-09-02T09:02:45.841Z>\nInitialize a git repository in the project root directory, add a .gitignore file, and make an initial commit. Create the remote repository on GitHub and provide the repository link for team access.\n</info added on 2025-09-02T09:02:45.841Z>",
+            "status": "pending",
+            "testStrategy": "Verify repository creation, correct visibility, and presence of initial files by cloning and inspecting the repository."
+          },
+          {
+            "id": 2,
+            "title": "Initialize Local Project Structure",
+            "description": "Set up the local project directory with the selected frontend and backend frameworks (e.g., React and Node.js/Express).",
+            "dependencies": [
+              "1.1"
+            ],
+            "details": "Use framework-specific CLI tools to scaffold the frontend and backend. Organize directories for clarity and maintainability, ensuring separation of concerns.",
+            "status": "pending",
+            "testStrategy": "Run initial build/start commands for both frontend and backend to confirm correct setup."
+          },
+          {
+            "id": 3,
+            "title": "Configure TypeScript, ESLint, and Prettier",
+            "description": "Integrate TypeScript for type safety and configure ESLint and Prettier for code quality and formatting.",
+            "dependencies": [
+              "1.2"
+            ],
+            "details": "Install and configure TypeScript, ESLint, and Prettier for both frontend and backend. Set up shared configuration files and scripts for linting and formatting.",
+            "status": "pending",
+            "testStrategy": "Run linting and formatting scripts to ensure no errors and consistent code style."
+          },
+          {
+            "id": 4,
+            "title": "Install Core Dependencies",
+            "description": "Install essential dependencies for the frontend and backend, including framework libraries and development tools.",
+            "dependencies": [
+              "1.3"
+            ],
+            "details": "Add core libraries (e.g., React, Express), TypeScript types, and any required tooling. Ensure package.json files are up to date and dependencies are correctly listed.",
+            "status": "pending",
+            "testStrategy": "Run dependency installation commands and verify that all packages are installed without errors."
+          },
+          {
+            "id": 5,
+            "title": "Add Documentation and Contribution Guidelines",
+            "description": "Create initial README, CONTRIBUTING, and other documentation files to guide collaborators.",
+            "dependencies": [
+              "1.4"
+            ],
+            "details": "Draft a README with project overview, setup instructions, and usage examples. Add CONTRIBUTING.md and optionally CODEOWNERS, SECURITY.md, and branch protection rules.",
+            "status": "pending",
+            "testStrategy": "Review documentation for completeness and clarity. Confirm that guidelines are visible and accessible in the repository."
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Implement User Authentication (Registration & Login)",
+        "description": "Develop secure user registration and login functionality.",
+        "details": "Design user schema (username, email, password hash). Implement registration and login endpoints with JWT-based authentication. Use bcrypt for password hashing. Add frontend forms for registration and login. Store JWT in HTTP-only cookies or secure storage.",
+        "testStrategy": "Unit test API endpoints for registration/login. Manually test user flows. Attempt login with valid/invalid credentials.",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design User Schema",
+            "description": "Define the user data model including fields for username, email, and password hash.",
+            "dependencies": [],
+            "details": "Create a schema in the database to store user information. Ensure the password field is reserved for storing a bcrypt hash, not plaintext.",
+            "status": "pending",
+            "testStrategy": "Verify schema creation and ensure all required fields are present. Attempt to create users with valid and invalid data."
+          },
+          {
+            "id": 2,
+            "title": "Implement Registration Endpoint",
+            "description": "Develop a backend API endpoint for user registration that securely hashes passwords using bcrypt.",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Accept registration data, validate input, hash the password with bcrypt, and store the new user in the database.",
+            "status": "pending",
+            "testStrategy": "Unit test registration with valid and invalid data. Confirm password is hashed and not stored in plaintext."
+          },
+          {
+            "id": 3,
+            "title": "Implement Login Endpoint with JWT Generation",
+            "description": "Develop a backend API endpoint for user login that verifies credentials and issues a JWT upon successful authentication.",
+            "dependencies": [
+              "2.1",
+              "2.2"
+            ],
+            "details": "Validate user credentials by comparing the provided password with the stored bcrypt hash. If valid, generate a JWT containing user identification claims and return it to the client.",
+            "status": "pending",
+            "testStrategy": "Unit test login with valid and invalid credentials. Confirm JWT is generated and contains correct claims."
+          },
+          {
+            "id": 4,
+            "title": "Integrate JWT Validation Middleware",
+            "description": "Set up middleware to validate JWTs on protected routes, ensuring only authenticated users can access them.",
+            "dependencies": [
+              "2.3"
+            ],
+            "details": "Configure JWT validation logic to check token signature, issuer, audience, and expiration. Apply middleware to endpoints requiring authentication.",
+            "status": "pending",
+            "testStrategy": "Attempt access to protected routes with valid, expired, and invalid JWTs. Confirm correct authorization behavior."
+          },
+          {
+            "id": 5,
+            "title": "Develop Frontend Registration and Login Forms",
+            "description": "Create frontend forms for user registration and login, handling JWT storage in HTTP-only cookies or secure storage.",
+            "dependencies": [
+              "2.2",
+              "2.3"
+            ],
+            "details": "Build UI components for registration and login. On successful authentication, store the JWT securely and manage user session state.",
+            "status": "pending",
+            "testStrategy": "Manually test user flows for registration and login. Verify JWT is stored securely and user session is maintained."
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Design and Implement Data Models for Categories and Entries",
+        "description": "Create database schemas for user-defined categories and financial entries.",
+        "details": "Define models: Category (type: asset/liability, name, userId), Entry (categoryId, amount, date, userId). Use a relational (PostgreSQL) or NoSQL (MongoDB) database as specified. Implement migration scripts.",
+        "testStrategy": "Write unit tests for model creation, validation, and relationships. Verify schema constraints.",
+        "priority": "high",
+        "dependencies": [
+          2
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Analyze Requirements and Choose Database Type",
+            "description": "Review the project requirements for category and entry models, compare relational (PostgreSQL) and NoSQL (MongoDB) options, and select the appropriate database type based on scalability, schema flexibility, and data integrity needs.",
+            "dependencies": [],
+            "details": "Summarize the pros and cons of PostgreSQL and MongoDB for this use case, referencing data modeling, schema enforcement, and transaction support.",
+            "status": "pending",
+            "testStrategy": "Document the rationale for the chosen database and verify alignment with project requirements."
+          },
+          {
+            "id": 2,
+            "title": "Define Category and Entry Data Models",
+            "description": "Design the data models for Category and Entry, specifying all required fields, data types, and relationships according to the selected database paradigm.",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "For PostgreSQL, define tables, columns, primary/foreign keys, and constraints. For MongoDB, define document structure, field types, and references or embedded documents.",
+            "status": "pending",
+            "testStrategy": "Review model definitions for completeness and correctness; validate against project requirements."
+          },
+          {
+            "id": 3,
+            "title": "Implement Database Schemas",
+            "description": "Translate the data models into actual database schemas using the appropriate tools and syntax for the chosen database system.",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "For PostgreSQL, write SQL schema definitions. For MongoDB, implement schema validation rules or Mongoose models as needed.",
+            "status": "pending",
+            "testStrategy": "Run schema creation scripts and verify that the database structure matches the model definitions."
+          },
+          {
+            "id": 4,
+            "title": "Develop and Test Migration Scripts",
+            "description": "Create migration scripts to set up and update the database schemas, ensuring version control and repeatability.",
+            "dependencies": [
+              "3.3"
+            ],
+            "details": "Use migration tools (e.g., Flyway, Liquibase for PostgreSQL; Migrate-mongo for MongoDB) to automate schema changes.",
+            "status": "pending",
+            "testStrategy": "Apply migrations on a test database and verify schema changes are applied correctly and idempotently."
+          },
+          {
+            "id": 5,
+            "title": "Write Unit Tests for Models and Relationships",
+            "description": "Develop unit tests to validate model creation, field validation, and relationships between categories and entries.",
+            "dependencies": [
+              "3.4"
+            ],
+            "details": "Test creation of valid and invalid records, enforcement of constraints, and correct linkage between categories and entries.",
+            "status": "pending",
+            "testStrategy": "Run automated tests to ensure all model logic and constraints behave as expected."
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "CRUD APIs for Categories (Assets & Liabilities)",
+        "description": "Develop RESTful endpoints for creating, reading, updating, and deleting asset/liability categories.",
+        "details": "Implement endpoints: POST /categories, GET /categories, PUT /categories/:id, DELETE /categories/:id. Enforce user authentication and ownership. Validate input data.",
+        "testStrategy": "API tests for all CRUD operations. Attempt unauthorized access and invalid data submissions.",
+        "priority": "high",
+        "dependencies": [
+          3
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Category Data Model",
+            "description": "Define the database schema and data model for asset and liability categories, including required fields and relationships to users.",
+            "dependencies": [],
+            "details": "Specify fields such as name, type (asset/liability), user ownership, and timestamps. Ensure the model supports efficient querying and future extensibility.",
+            "status": "pending",
+            "testStrategy": "Validate schema creation and relationships using unit tests. Confirm correct linkage to user accounts."
+          },
+          {
+            "id": 2,
+            "title": "Implement RESTful CRUD Endpoints",
+            "description": "Develop POST, GET, PUT, and DELETE endpoints for /categories, handling creation, retrieval, updating, and deletion of categories.",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Use REST conventions for endpoint structure and HTTP methods. Ensure endpoints interact correctly with the category data model.",
+            "status": "pending",
+            "testStrategy": "Write API tests for all CRUD operations, verifying correct HTTP status codes and response payloads."
+          },
+          {
+            "id": 3,
+            "title": "Enforce User Authentication and Ownership",
+            "description": "Integrate authentication middleware to restrict access to category endpoints and ensure users can only manage their own categories.",
+            "dependencies": [
+              "4.2"
+            ],
+            "details": "Implement token-based authentication (e.g., JWT or OAuth 2.0). Check user identity on each request and enforce ownership checks for category operations.",
+            "status": "pending",
+            "testStrategy": "Attempt unauthorized access and verify endpoints reject requests without valid authentication or ownership."
+          },
+          {
+            "id": 4,
+            "title": "Validate Input Data for Category Operations",
+            "description": "Implement input validation for all category CRUD endpoints to ensure data integrity and prevent invalid submissions.",
+            "dependencies": [
+              "4.2"
+            ],
+            "details": "Validate required fields, data types, and constraints (e.g., unique category names per user). Return descriptive error messages for invalid input.",
+            "status": "pending",
+            "testStrategy": "Submit invalid data in API tests and confirm appropriate error responses are returned."
+          },
+          {
+            "id": 5,
+            "title": "Document API Endpoints and Usage",
+            "description": "Create comprehensive documentation for all category CRUD endpoints, including request/response formats, authentication requirements, and error codes.",
+            "dependencies": [
+              "4.2",
+              "4.3",
+              "4.4"
+            ],
+            "details": "Use OpenAPI/Swagger or similar tools to generate and maintain API docs. Include examples for each endpoint and detail authentication flows.",
+            "status": "pending",
+            "testStrategy": "Review documentation for completeness and accuracy. Ensure developers can implement and test endpoints using provided docs."
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "CRUD APIs for Financial Entries",
+        "description": "Develop RESTful endpoints for adding, editing, and deleting entries under categories.",
+        "details": "Implement endpoints: POST /entries, GET /entries, PUT /entries/:id, DELETE /entries/:id. Ensure entries are linked to categories and users. Validate amounts and dates.",
+        "testStrategy": "API tests for all CRUD operations. Check for correct linkage to categories and users.",
+        "priority": "high",
+        "dependencies": [
+          4
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design API Endpoints and Request/Response Schemas",
+            "description": "Define the RESTful endpoints for financial entries (POST /entries, GET /entries, PUT /entries/:id, DELETE /entries/:id) and specify the expected request and response formats, including error handling conventions.",
+            "dependencies": [],
+            "details": "Document endpoint paths, HTTP methods, required and optional fields, and standardize error responses for validation failures or unauthorized access.",
+            "status": "pending",
+            "testStrategy": "Review API documentation for completeness and clarity; verify that all required fields and error cases are covered."
+          },
+          {
+            "id": 2,
+            "title": "Implement Entry Creation Endpoint (POST /entries)",
+            "description": "Develop the endpoint to add new financial entries, ensuring each entry is linked to a valid category and user, and that amount and date fields are validated.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Validate input data for amount (numeric, positive/negative as appropriate) and date (valid ISO format). Check that categoryId and userId exist and are authorized.",
+            "status": "pending",
+            "testStrategy": "Write API tests for valid and invalid entry creation, including missing fields, invalid data, and unauthorized access."
+          },
+          {
+            "id": 3,
+            "title": "Implement Entry Retrieval Endpoint (GET /entries)",
+            "description": "Develop the endpoint to retrieve financial entries, supporting filtering by category, user, and date range as needed.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Ensure entries returned are only those accessible to the authenticated user. Support query parameters for filtering and pagination if required.",
+            "status": "pending",
+            "testStrategy": "Write API tests for retrieving entries with and without filters, and for unauthorized access."
+          },
+          {
+            "id": 4,
+            "title": "Implement Entry Update and Deletion Endpoints (PUT /entries/:id, DELETE /entries/:id)",
+            "description": "Develop endpoints to edit and delete existing entries, enforcing validation, ownership, and correct linkage to categories and users.",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Validate updated data for amount and date. Ensure only the entry owner can update or delete. Handle cases where the entry does not exist.",
+            "status": "pending",
+            "testStrategy": "Write API tests for updating and deleting entries, including invalid data, unauthorized access, and non-existent entries."
+          },
+          {
+            "id": 5,
+            "title": "Integrate with Category and User Models and Perform End-to-End API Testing",
+            "description": "Ensure all entry operations correctly reference category and user models, and conduct comprehensive end-to-end tests for all CRUD operations.",
+            "dependencies": [
+              "5.2",
+              "5.3",
+              "5.4"
+            ],
+            "details": "Check referential integrity between entries, categories, and users. Validate that all CRUD operations enforce business rules and data consistency.",
+            "status": "pending",
+            "testStrategy": "Run automated and manual end-to-end tests covering all CRUD scenarios, linkage validation, and error handling."
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Frontend: Category and Entry Management UI",
+        "description": "Build user interfaces for managing categories and entries.",
+        "details": "Create React components for listing, creating, editing, and deleting categories and entries. Use form validation and display error/success messages. Fetch data from backend APIs. Ensure responsive design.",
+        "testStrategy": "Manual UI testing for all CRUD flows. Automated component tests for forms and lists.",
+        "priority": "high",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Category and Entry Data Models for UI State",
+            "description": "Define the data structures and state management approach for categories and entries in the frontend, ensuring compatibility with backend API responses.",
+            "dependencies": [],
+            "details": "Establish TypeScript interfaces or types for categories and entries. Set up React state (e.g., useState, useReducer, or context) to manage lists and individual items for both entities.",
+            "status": "pending",
+            "testStrategy": "Review type definitions and state initialization. Confirm state updates correctly reflect mock API data."
+          },
+          {
+            "id": 2,
+            "title": "Implement Category and Entry CRUD Components",
+            "description": "Develop React components for listing, creating, editing, and deleting categories and entries, including forms and modals as needed.",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Create reusable components for displaying lists, detail views, and forms. Integrate form validation and ensure components can trigger CRUD actions.",
+            "status": "pending",
+            "testStrategy": "Manually test all UI flows for categories and entries. Write component tests for form validation and rendering."
+          },
+          {
+            "id": 3,
+            "title": "Integrate Backend API Calls for CRUD Operations",
+            "description": "Connect frontend components to backend APIs for fetching, creating, updating, and deleting categories and entries.",
+            "dependencies": [
+              "6.2"
+            ],
+            "details": "Use fetch or Axios to call RESTful endpoints. Handle loading states, errors, and update UI state based on API responses.",
+            "status": "pending",
+            "testStrategy": "Mock API responses in tests. Verify correct API calls are made and UI updates accordingly."
+          },
+          {
+            "id": 4,
+            "title": "Implement Form Validation and Feedback Mechanisms",
+            "description": "Add client-side validation to forms and display error or success messages based on user actions and API responses.",
+            "dependencies": [
+              "6.2",
+              "6.3"
+            ],
+            "details": "Use validation libraries or custom logic to enforce required fields and data formats. Show inline validation errors and global feedback messages.",
+            "status": "pending",
+            "testStrategy": "Test form submissions with valid and invalid data. Confirm correct feedback is shown for all scenarios."
+          },
+          {
+            "id": 5,
+            "title": "Ensure Responsive and Accessible UI Design",
+            "description": "Apply responsive design principles and accessibility best practices to all category and entry management interfaces.",
+            "dependencies": [
+              "6.2",
+              "6.3",
+              "6.4"
+            ],
+            "details": "Use CSS frameworks or custom styles for layout. Test UI on different screen sizes. Add ARIA attributes and keyboard navigation support.",
+            "status": "pending",
+            "testStrategy": "Manually test UI on various devices and browsers. Use accessibility tools to check compliance."
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Implement Data Persistence and Security",
+        "description": "Ensure all user data is securely stored and accessible only to authenticated users.",
+        "details": "Configure database access controls. Implement middleware to check authentication on all data routes. Encrypt sensitive data as needed. Regularly backup database.",
+        "testStrategy": "Attempt unauthorized data access. Verify data isolation between users. Test backup/restore procedures.",
+        "priority": "high",
+        "dependencies": [
+          5
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Configure Database Access Controls",
+            "description": "Set up and enforce strict access controls to ensure only authorized users and services can access the database.",
+            "dependencies": [],
+            "details": "Implement role-based access control (RBAC), assign minimal privileges based on user roles, and regularly review permissions. Enforce strong authentication and password policies for all database accounts.",
+            "status": "pending",
+            "testStrategy": "Attempt unauthorized access with various user roles. Review access logs and verify that only permitted users can access specific data."
+          },
+          {
+            "id": 2,
+            "title": "Implement Authentication Middleware for Data Routes",
+            "description": "Develop and integrate middleware to verify user authentication on all API routes that access or modify user data.",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Ensure all data-related endpoints require valid authentication tokens (e.g., JWT). Deny access to unauthenticated requests and log all access attempts.",
+            "status": "pending",
+            "testStrategy": "Test all endpoints with and without valid authentication. Attempt to bypass middleware and verify that unauthorized access is blocked."
+          },
+          {
+            "id": 3,
+            "title": "Encrypt Sensitive Data at Rest and in Transit",
+            "description": "Apply encryption to sensitive user data stored in the database and ensure all data transmissions are secured.",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Use strong encryption algorithms for data at rest (e.g., AES-256) and enforce TLS/SSL for all database and API connections. Consider column-level encryption for highly sensitive fields.",
+            "status": "pending",
+            "testStrategy": "Inspect database storage for unencrypted sensitive data. Use network analysis tools to confirm all data transmissions are encrypted."
+          },
+          {
+            "id": 4,
+            "title": "Implement Regular Database Backup and Recovery Procedures",
+            "description": "Establish automated, secure backup routines and test recovery processes to prevent data loss.",
+            "dependencies": [
+              "7.1",
+              "7.3"
+            ],
+            "details": "Schedule frequent encrypted backups, store them securely offsite or in a secure cloud location, and document recovery procedures. Periodically test restoration from backups.",
+            "status": "pending",
+            "testStrategy": "Simulate data loss scenarios and perform full and partial restores. Verify data integrity and access controls after recovery."
+          },
+          {
+            "id": 5,
+            "title": "Monitor, Audit, and Review Data Access and Security Events",
+            "description": "Set up continuous monitoring and auditing of database access and security-related events to detect and respond to threats.",
+            "dependencies": [
+              "7.1",
+              "7.2",
+              "7.3"
+            ],
+            "details": "Enable detailed logging of all access and modification events. Regularly review audit logs for suspicious activity and ensure compliance with security policies.",
+            "status": "pending",
+            "testStrategy": "Generate and review audit reports. Simulate suspicious activities and verify that alerts and logs are generated and reviewed appropriately."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Develop Interactive Dashboard and Charts",
+        "description": "Create the main dashboard with interactive charts for net worth, trends, and breakdowns.",
+        "details": "Use a charting library (e.g., Chart.js, Recharts). Implement a dashboard showing: current net worth, line chart for historical trends, pie/donut charts for asset/liability breakdown. Add custom date range filters. Fetch and aggregate data from backend.",
+        "testStrategy": "Visual inspection of charts with sample data. Automated tests for data aggregation logic. Test date filtering.",
+        "priority": "high",
+        "dependencies": [
+          6,
+          7
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Define Dashboard Structure and User Requirements",
+            "description": "Gather stakeholder input to clarify dashboard goals, user personas, and key metrics (net worth, trends, breakdowns). Establish layout and navigation principles for optimal user experience.",
+            "dependencies": [],
+            "details": "Conduct interviews with stakeholders and end-users to identify essential metrics and dashboard features. Document user personas and their data needs. Outline the dashboard's main sections and navigation flow.",
+            "status": "pending",
+            "testStrategy": "Review requirements documentation with stakeholders. Validate alignment with user needs through wireframe feedback."
+          },
+          {
+            "id": 2,
+            "title": "Design Dashboard UI and Chart Components",
+            "description": "Create high-fidelity UI designs for the dashboard, including interactive chart components for net worth, historical trends, and asset/liability breakdowns.",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Design the dashboard layout using best practices for clarity, minimalism, and logical arrangement. Specify chart types (line, pie/donut) and their placement. Prepare UI assets and style guides.",
+            "status": "pending",
+            "testStrategy": "Conduct visual inspection and usability testing of design prototypes. Gather feedback from representative users."
+          },
+          {
+            "id": 3,
+            "title": "Implement Data Fetching and Aggregation Logic",
+            "description": "Develop backend integration to fetch financial data and aggregate it for dashboard display, ensuring accurate calculations for net worth and breakdowns.",
+            "dependencies": [
+              "8.2"
+            ],
+            "details": "Connect frontend components to backend APIs. Implement logic to aggregate entries by category and date. Ensure data is formatted for charting library consumption.",
+            "status": "pending",
+            "testStrategy": "Write automated tests for data aggregation functions. Validate sample outputs against expected results."
+          },
+          {
+            "id": 4,
+            "title": "Integrate Charting Library and Build Interactive Charts",
+            "description": "Use a charting library (e.g., Chart.js, Recharts) to render interactive charts for net worth, trends, and breakdowns, supporting user interactions and animations.",
+            "dependencies": [
+              "8.3"
+            ],
+            "details": "Configure charting library components within the dashboard. Implement interactive features such as tooltips, highlighting, and drill-downs. Apply animation options judiciously for enhanced UX.",
+            "status": "pending",
+            "testStrategy": "Perform visual inspection of charts with sample data. Test interactive features and responsiveness."
+          },
+          {
+            "id": 5,
+            "title": "Implement Custom Date Range Filters and Dashboard Interactivity",
+            "description": "Add custom date range filters and controls to allow users to adjust the displayed data, updating charts and metrics dynamically.",
+            "dependencies": [
+              "8.4"
+            ],
+            "details": "Develop UI controls for selecting date ranges. Ensure dashboard components reactively update based on filter changes. Optimize for performance and clarity.",
+            "status": "pending",
+            "testStrategy": "Test date filtering with various ranges. Verify charts and metrics update correctly. Write automated tests for filter logic."
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Frontend: User Profile and Settings",
+        "description": "Implement user profile page and settings for customization.",
+        "details": "Allow users to update profile info (email, password). Add settings for chart preferences (e.g., default date range). Ensure secure update flows.",
+        "testStrategy": "Manual testing of profile updates. Automated tests for settings persistence.",
+        "priority": "medium",
+        "dependencies": [
+          2,
+          6
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design User Profile Page Layout",
+            "description": "Create an intuitive and accessible layout for the user profile page, including sections for profile information and settings.",
+            "dependencies": [],
+            "details": "Ensure easy navigation, clear calls to action, and visibility of update options for profile info and settings. Follow best practices for user profile page design.",
+            "status": "pending",
+            "testStrategy": "Manual UI review for navigation and accessibility; verify visibility of key actions."
+          },
+          {
+            "id": 2,
+            "title": "Implement Profile Information Update Functionality",
+            "description": "Enable users to securely update their profile information, such as email and password.",
+            "dependencies": [
+              "9.1"
+            ],
+            "details": "Integrate frontend forms with backend APIs for updating email and password. Use secure flows and validation for sensitive data changes.",
+            "status": "pending",
+            "testStrategy": "Manual testing of update flows; automated tests for form validation and error handling."
+          },
+          {
+            "id": 3,
+            "title": "Develop Settings Management for Chart Preferences",
+            "description": "Allow users to customize chart preferences, including default date range and other relevant options.",
+            "dependencies": [
+              "9.1"
+            ],
+            "details": "Create settings UI components and persist user preferences using backend APIs. Ensure settings are applied across relevant charts.",
+            "status": "pending",
+            "testStrategy": "Automated tests for settings persistence; manual verification of preference application."
+          },
+          {
+            "id": 4,
+            "title": "Ensure Secure Update and Data Handling Flows",
+            "description": "Implement security measures for all profile and settings updates, including authentication and data validation.",
+            "dependencies": [
+              "9.2",
+              "9.3"
+            ],
+            "details": "Use secure protocols, validate user input, and ensure updates are only allowed for authenticated users. Encrypt sensitive data in transit and at rest.",
+            "status": "pending",
+            "testStrategy": "Security testing for update endpoints; attempt unauthorized access; review encryption and validation."
+          },
+          {
+            "id": 5,
+            "title": "Test and Validate User Profile and Settings Features",
+            "description": "Conduct comprehensive manual and automated testing to ensure all profile and settings features work as intended and persist correctly.",
+            "dependencies": [
+              "9.2",
+              "9.3",
+              "9.4"
+            ],
+            "details": "Perform manual testing of profile updates and settings changes. Develop automated tests for persistence, error handling, and security compliance.",
+            "status": "pending",
+            "testStrategy": "Manual and automated test execution; review test coverage and resolve identified issues."
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Testing, QA, and Documentation",
+        "description": "Conduct end-to-end testing and document the application for users and developers.",
+        "details": "Write integration and end-to-end tests (e.g., Cypress). Prepare user documentation (getting started, FAQ). Document API endpoints and data models. Fix bugs found during QA.",
+        "testStrategy": "Run all automated tests. Manual exploratory testing. Review documentation for completeness.",
+        "priority": "high",
+        "dependencies": [
+          8,
+          9
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Write Integration and End-to-End Tests",
+            "description": "Develop comprehensive integration and end-to-end test cases using Cypress to validate user flows and system interactions.",
+            "dependencies": [],
+            "details": "Create test scenarios that simulate real user interactions and system workflows, covering critical paths such as authentication, dashboard usage, and data entry. Ensure tests are executable across multiple browsers and platforms.",
+            "status": "pending",
+            "testStrategy": "Automate tests using Cypress. Run tests in headless and interactive modes. Validate results with assertions and review test reports for failures."
+          },
+          {
+            "id": 2,
+            "title": "Conduct Manual Exploratory Testing and QA",
+            "description": "Perform manual exploratory testing to identify edge cases and usability issues not covered by automated tests.",
+            "dependencies": [
+              "10.1"
+            ],
+            "details": "Test the application manually across supported devices and browsers, focusing on user experience, error handling, and unexpected behaviors. Document any issues found for resolution.",
+            "status": "pending",
+            "testStrategy": "Follow exploratory testing charters. Log defects and observations. Re-test after fixes."
+          },
+          {
+            "id": 3,
+            "title": "Fix Bugs Identified During QA",
+            "description": "Resolve defects and issues discovered during automated and manual testing phases.",
+            "dependencies": [
+              "10.2"
+            ],
+            "details": "Prioritize and address bugs based on severity and impact. Collaborate with developers to implement fixes and verify resolutions through regression testing.",
+            "status": "pending",
+            "testStrategy": "Track bug status. Re-run relevant tests to confirm fixes. Ensure no regressions are introduced."
+          },
+          {
+            "id": 4,
+            "title": "Prepare User Documentation",
+            "description": "Create clear and concise user documentation, including getting started guides and FAQs.",
+            "dependencies": [],
+            "details": "Draft documentation that helps end users understand application features, workflows, and troubleshooting steps. Include screenshots and step-by-step instructions where applicable.",
+            "status": "pending",
+            "testStrategy": "Review documentation for completeness and clarity. Validate instructions by following them as a new user."
+          },
+          {
+            "id": 5,
+            "title": "Document API Endpoints and Data Models",
+            "description": "Produce technical documentation for all API endpoints and data models for developer reference.",
+            "dependencies": [],
+            "details": "Detail each API endpoint with request/response formats, authentication requirements, and example payloads. Document data models, including field definitions and relationships.",
+            "status": "pending",
+            "testStrategy": "Verify documentation accuracy by cross-referencing with implementation and running example requests."
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-09-02T08:58:57.795Z",
+      "updated": "2025-09-02T09:02:38.695Z",
+      "description": "Tasks for master context"
+    }
+  }
+}
